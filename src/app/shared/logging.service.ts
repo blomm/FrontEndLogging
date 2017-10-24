@@ -12,6 +12,14 @@ export enum LogLevel {
 
 }
 
+export class LogEntry{
+  entryDate: Date = new Date();
+  message:string ='';
+  level:LogLevel= LogLevel.Debug;
+  extraInfo: any[] = [];
+  logWithDate:boolean = true;
+}
+
 @Injectable()
 export class LoggingService {
 
