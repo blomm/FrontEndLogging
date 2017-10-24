@@ -69,14 +69,14 @@ export class LoggingService {
   private writeToLog(msg:string, logLevel:LogLevel, params: any[]):void{
 
     if(this.shouldLog(logLevel)){
-      let fullMessage: string = '';
-      if(this.logWithDate){
-        fullMessage += new Date()+ ' - ';
-      }
-      fullMessage += 'Type: ' + LogLevel[logLevel];
-      fullMessage += ' - Message: ' + msg;
-      fullMessage += ' - More Info: ' + this.formatParams(params);
-      console.log(fullMessage);
+      let entry: LogEntry = new LogEntry();
+      entry.message = msg;
+      entry.level = logLevel;
+      entry.extraInfo = params;
+      entry.level = logLevel;
+      entry.logWithDate = this.logWithDate;
+
+      console.log(entry.buildLogString());
     }
   }
 
