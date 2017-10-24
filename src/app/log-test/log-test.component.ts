@@ -10,6 +10,7 @@ export class LogTestComponent implements OnInit {
 
   verified = false;
 
+  //added some comments....
   constructor(private loggingService: LoggingService) {
 
   }
