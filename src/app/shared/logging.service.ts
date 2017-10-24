@@ -18,6 +18,31 @@ export class LogEntry{
   level:LogLevel= LogLevel.Debug;
   extraInfo: any[] = [];
   logWithDate:boolean = true;
+
+  buildLogString():string{
+    let ls = '';
+    if(this.logWithDate){
+      ls += this.entryDate;
+    }
+    ls += ' Type: ' + this.message;
+    ls += ' Message: ' + LogLevel[this.level];
+    if(this.extraInfo.length){
+      ls += ' Extra Info: ' + this.formatParams(this.extraInfo);
+    }
+    return ls;
+  }
+
+  private formatParams(params:any[]):string{
+    let retVal = params.join(',');
+    //if we have any objects
+    if(params.some(p => typeof p === 'object')){
+      retVal='';
+      for(let param of params){
+        retVal+=JSON.stringify(param) + ',';
+      }
+    }
+    return retVal;
+  }
 }
 
 @Injectable()
@@ -55,17 +80,7 @@ export class LoggingService {
     }
   }
 
-  private formatParams(params:any[]):string{
-    let retVal = params.join(',');
-    //if we have any objects
-    if(params.some(p => typeof p === 'object')){
-      retVal='';
-      for(let param of params){
-        retVal+=JSON.stringify(param) + ',';
-      }
-    }
-    return retVal;
-  }
+
 
   debug(msg:string, ...optionalParameters:any[]){
     this.writeToLog(msg, LogLevel.Debug, optionalParameters);
