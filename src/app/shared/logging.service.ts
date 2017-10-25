@@ -79,7 +79,7 @@ export class LoggingService {
       entry.logWithDate = this.logWithDate;
 
       //console.log(entry.buildLogString());
-
+      //itterate all logs
       for(let logger of this.publishers){
         logger.log(entry).subscribe(resp=>{
           console.log(resp);
