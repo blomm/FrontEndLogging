@@ -45,6 +45,7 @@ export class LogLocalStorage extends LogPublisher{
 
     return Observable.of(retValue);
   }
+
   clear(): Observable<boolean> {
     localStorage.removeItem(this.location);
     return Observable.of(true);
