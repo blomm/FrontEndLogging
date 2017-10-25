@@ -22,3 +22,22 @@ export class LogConsole extends LogPublisher{
   }
 
 }
+
+export class LogLocalStorage extends LogPublisher{
+
+  constructor(){
+    super();
+
+    this.location='logging';
+  }
+
+  log(record: LogEntry): Observable<boolean> {
+    let retValue: boolean=false;
+
+    return Observable.of(retValue);
+  }
+  clear(): Observable<boolean> {
+    return Observable.of(true);
+  }
+
+}
