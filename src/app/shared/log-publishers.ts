@@ -3,13 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 
-export abstract class LogPublishers {
+export abstract class LogPublisher {
   location: string;
   abstract log(record: LogEntry):Observable<boolean>;
   abstract clear():Observable<boolean>;
 }
 
-export class LogConsole extends LogPublishers{
+export class LogConsole extends LogPublisher{
 
   log(record: LogEntry): Observable<boolean> {
     console.log(record.buildLogString());
