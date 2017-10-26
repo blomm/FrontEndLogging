@@ -22,3 +22,38 @@ export class LogConsole extends LogPublisher{
   }
 
 }
+
+export class LogLocalStorage extends LogPublisher{
+
+  constructor(){
+    super();
+
+    this.location = 'logging';
+  }
+
+  log(record: LogEntry): Observable<boolean> {
+    let retValue: boolean = false;
+    let records: LogEntry[];
+    try {
+      records = JSON.parse(localStorage.getItem(this.location)) || [];
+      records.push(record);
+      localStorage.setItem(this.location, JSON.stringify(records));
+      retValue = true;
+    } catch (ex) {
+      console.log(ex);
+    }
+
+    return Observable.of(retValue);
+  }
+
+  getAll(){
+    let records:LogEntry[] = JSON.parse(localStorage.getItem(this.location)) || [];
+    return Observable.of(records);
+  }
+
+  clear(): Observable<boolean> {
+    localStorage.removeItem(this.location);
+    return Observable.of(true);
+  }
+
+}
