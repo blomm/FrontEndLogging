@@ -19,6 +19,10 @@ export class LogTestComponent implements OnInit {
     this.verified = false;
   }
 
+  clearLog():void{
+    this.loggingService.clear();
+  }
+
   logMessage(): void {
     this.loggingService.level = LogLevel.All;
     this.loggingService.debug('hey this works! very cool', 'Paul', {reality:true, virtual:'hell yeah'}, true, 3);

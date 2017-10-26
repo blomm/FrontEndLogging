@@ -109,4 +109,11 @@ export class LoggingService {
     //console.log(new Date() + ': ' + JSON.stringify(message));
   }
 
+  clear():void{
+
+    for(let logger of this.publishers){
+      logger.clear();
+    }
+  }
+
 }
