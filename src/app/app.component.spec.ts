@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { LogTestComponent } from './log-test/log-test.component';
 import { LoggingService } from './shared/logging.service';
+import { LogPublishersService } from './shared/log-publishers.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
         LogTestComponent
       ],
       providers: [
-        LoggingService
+        LoggingService,
+        LogPublishersService
       ]
     }).compileComponents();
   }));

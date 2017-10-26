@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggingService, LogLevel } from '../shared/logging.service';
+import { Product } from './product';
 
 @Component({
   selector: 'app-log-test',
@@ -21,6 +22,17 @@ export class LogTestComponent implements OnInit {
 
   clearLog():void{
     this.loggingService.clear();
+  }
+
+  logObject():void{
+    let product: Product = new Product();
+    product.productId = 1;
+    product.productName = 'new product';
+    product.url = 'http://myprod.com/great';
+    product.price = 99.99;
+    product.introductionDate = new Date();
+
+    this.loggingService.log('This is an object: ', product );
   }
 
   logMessage(): void {
